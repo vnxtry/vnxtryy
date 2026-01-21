@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>vnxtryy</title>
     <link rel="icon" id="favicon" href="">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,26 +14,28 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #dcdcdc; /* Fundo cinza da página */
+            background-color: #121212; /* Fundo preto profundo */
             font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #333;
+            color: #e0e0e0; /* Cor do texto principal (quase branco) */
         }
 
         .card {
-            background-color: #f2f3f5; /* Cor do card */
+            background-color: #1e1e1e; /* Cor do card (cinza bem escuro) */
             width: 100%;
             max-width: 420px;
             border-radius: 25px;
             padding: 50px 30px 30px 30px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            /* Sombra suave e escura para dar profundidade */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid #2a2a2a; /* Borda fina para definição */
         }
 
         /* Foto de Perfil */
@@ -46,8 +48,9 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            border: 4px solid #f2f3f5; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 4px solid #1e1e1e; /* Borda da cor do card */
+            /* Sombra na foto para destacar */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         /* Bolinha de Status */
@@ -57,23 +60,24 @@
             right: 5px;
             width: 20px;
             height: 20px;
-            background-color: #747f8d; /* Cinza (Offline) */
+            background-color: #747f8d;
             border-radius: 50%;
-            border: 3px solid #f2f3f5;
+            border: 3px solid #1e1e1e; /* Borda escura */
         }
 
         /* Texto (Nome e Bio) */
         h1 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            color: #111;
+            color: #ffffff; /* Nome em branco puro */
             margin-bottom: 5px;
+            letter-spacing: 0.5px;
         }
 
         p {
             font-size: 14px;
-            color: #666;
-            margin-bottom: 30px;
+            color: #a0a0a0; /* Bio em cinza claro */
+            margin-bottom: 35px;
         }
 
         /* Lista de Botões */
@@ -81,61 +85,69 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
         .btn {
-            background: #ffffff;
-            color: #000;
+            background: #252525; /* Botão cinza escuro */
+            color: #ffffff;
             text-decoration: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: 500;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
             font-size: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
+            gap: 12px;
+            /* Sombra sutil nos botões */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 1px solid #333;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+            background: #333; /* Fica mais claro ao passar o mouse */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            border-color: #555;
         }
 
-        /* GIF do Neymar Pequenininho */
+        /* GIF do Neymar */
         .decoration-gif {
             width: 50px;
             height: 50px;
-            border-radius: 5px;
+            border-radius: 8px;
             object-fit: cover;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            opacity: 0.8; /* Um pouco mais discreto no tema escuro */
         }
 
         /* Footer Preto do Discord */
         .discord-footer {
-            background: #000;
+            background: #151515; /* Quase preto */
             color: #fff;
             width: 100%;
             padding: 15px;
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             gap: 15px;
             text-align: left;
+            border: 1px solid #2a2a2a;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
         }
 
         .mini-pfp {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
         }
 
-        .footer-info h4 { font-size: 14px; margin: 0; font-weight: 600; }
-        .footer-info span { font-size: 12px; color: #aaa; }
+        .footer-info h4 { font-size: 15px; margin: 0; font-weight: 700; }
+        .footer-info span { font-size: 13px; color: #888; }
 
     </style>
 </head>
@@ -152,10 +164,10 @@
         <p>be kind and take care</p>
 
         <div class="links">
-            <a href="https://youtube.com" class="btn"><i class="fab fa-youtube"></i> youtube</a>
-            <a href="https://twitter.com" class="btn"><i class="fab fa-twitter"></i> twitter</a>
-            <a href="#" class="btn"><i class="fab fa-steam"></i> steam</a>
-            <a href="#" class="btn"><i class="fas fa-gamepad"></i> setup & peripherals</a>
+            <a href="https://youtube.com" class="btn"><i class="fab fa-youtube"></i> Youtube</a>
+            <a href="https://twitter.com" class="btn"><i class="fab fa-twitter"></i> Twitter</a>
+            <a href="#" class="btn"><i class="fab fa-steam"></i> Steam</a>
+            <a href="#" class="btn"><i class="fas fa-gamepad"></i> Setup & Peripherals</a>
         </div>
 
         <img src="https://media.tenor.com/AvkZ8t_a52AAAAAC/neymar.gif" class="decoration-gif">
@@ -168,7 +180,7 @@
             </div>
         </div>
         
-        <div style="margin-top: 15px; font-size: 11px; color: #999;">20250926</div>
+        <div style="margin-top: 20px; font-size: 11px; color: #555; font-weight: 600;">20250926</div>
 
     </div>
 
@@ -181,10 +193,7 @@
                 const response = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
                 const json = await response.json();
 
-                if (!json.success) { 
-                    console.log("Erro: Verifique se entrou no servidor do Lanyard.");
-                    return; 
-                }
+                if (!json.success) { return; }
 
                 const data = json.data;
                 const user = data.discord_user;
@@ -193,13 +202,13 @@
                 const avatarUrl = `https://cdn.discordapp.com/avatars/${USER_ID}/${user.avatar}.png?size=512`;
                 document.getElementById('pfp').src = avatarUrl;
                 document.getElementById('mini-pfp').src = avatarUrl;
-                document.getElementById('favicon').href = avatarUrl; // Ícone na aba
+                document.getElementById('favicon').href = avatarUrl;
                 
                 // 2. Atualizar Nomes
                 document.getElementById('username').innerText = user.username;
                 document.getElementById('footer-user').innerText = user.username;
 
-                // 3. Atualizar Status (Cor e Texto)
+                // 3. Atualizar Status
                 const statusColors = { 
                     online: "#3ba55c", 
                     idle: "#faa61a", 
@@ -210,7 +219,7 @@
                 const myStatus = data.discord_status;
                 document.getElementById('status').style.backgroundColor = statusColors[myStatus] || statusColors.offline;
                 
-                // Pega o jogo/atividade ou o status
+                // Atividade
                 if (data.activities && data.activities.length > 0) {
                     document.getElementById('activity').innerText = data.activities[0].name;
                 } else {
