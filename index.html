@@ -5,252 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
     <link rel="icon" id="favicon" href="">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Reset e Base */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
         body {
-            background-color: #d6d6d6; /* Fundo cinza externo */
+            background-color: #d6d6d6;
             font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
             color: #333;
+            padding: 20px;
         }
 
-        /* O Card Principal */
-        .main-card {
-            background-color: #f2f3f5; /* Fundo cinza bem clarinho do card */
+        .card {
+            background-color: #f2f3f5;
             width: 100%;
-            max-width: 480px; /* Largura igual à da referência */
+            max-width: 450px;
             border-radius: 20px;
-            padding: 50px 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin: 20px;
+            position: relative;
+            padding-bottom: 30px;
         }
 
-        /* Foto de Perfil (Avatar) */
-        .avatar-container {
+        /* BANNER DO TOPO */
+        .banner-area {
+            width: 100%;
+            height: 140px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
             position: relative;
-            display: inline-block;
-            margin-bottom: 15px;
+        }
+
+        /* FOTO E STATUS */
+        .profile-container {
+            position: relative;
+            width: 110px;
+            margin: -55px auto 10px auto;
         }
 
         #pfp {
             width: 110px;
             height: 110px;
             border-radius: 50%;
-            border: 4px solid #f2f3f5; /* Borda da cor do fundo para separar */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 5px solid #f2f3f5;
+            background: #fff;
+            display: block;
         }
 
-        /* Status Dot (Bolinha de status) */
         .status-dot {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 18px;
-            height: 18px;
-            background-color: #747f8d; /* Cinza (Offline) por padrão */
+            bottom: 5px;
+            right: 5px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
-            border: 3px solid #f2f3f5;
+            border: 4px solid #f2f3f5;
+            background-color: #747f8d; /* Começa Cinza */
         }
 
-        /* Textos do Perfil */
-        .username {
-            font-size: 20px;
-            font-weight: 700;
-            color: #2c2c2c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+        /* TEXTOS */
+        .info { padding: 0 20px 20px 20px; }
+        h1 { font-size: 22px; margin: 0; color: #111; font-weight: 700; }
+        p { color: #666; font-size: 14px; margin: 5px 0 25px 0; }
 
-        .pronouns {
-            font-size: 14px;
-            font-weight: 400;
-            color: #666;
-            background: rgba(0,0,0,0.05);
-            padding: 2px 6px;
-            border-radius: 6px;
-        }
-
-        .bio {
-            font-size: 15px;
-            color: #555;
-            margin-top: 5px;
-            margin-bottom: 35px;
-        }
-
-        /* Botões de Links (Estilo "Paints") */
-        .links-container {
+        /* BOTÕES */
+        .links {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .btn {
-            background: #ffffff;
-            color: #2c2c2c;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 8px; /* Cantos levemente arredondados */
-            font-weight: 600;
-            font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.04); /* Sombra suave */
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-
-        /* Card Preto do Discord (Footer) */
-        .discord-card {
-            background: #000;
-            color: #fff;
-            padding: 12px 20px;
-            border-radius: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-            min-width: 250px;
-        }
-
-        .discord-mini-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .discord-info h4 {
-            font-size: 14px;
-            margin: 0;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .discord-info p {
-            font-size: 12px;
-            color: #aaa;
-            margin: 3px 0 0 0;
+            padding: 0 30px 20px 30px;
         }
         
-        /* Pequena imagem decorativa acima do footer */
-        .decoration-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            object-fit: cover;
+        .btn {
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* GIF DECORATIVO (Estilo Paints) */
+        .decoration-gif {
+            width: 60px; /* Tamanho pequeno */
+            height: auto;
+            border-radius: 8px;
+            margin: 10px auto; /* Centraliza */
+            display: block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="main-card">
-        <div class="avatar-container">
-            <img id="pfp" src="https://i.pinimg.com/736x/b5/1b/78/b51b78ecc8e543354959ebbd196328a6.jpg" alt="Avatar">
-            <div id="status-dot" class="status-dot"></div>
+    <div class="card">
+        <div id="banner" class="banner-area"></div>
+
+        <div class="profile-container">
+            <img id="pfp" src="https://cdn.discordapp.com/embed/avatars/0.png">
+            <div id="status" class="status-dot"></div>
         </div>
 
-        <div class="username">
-            <span id="username-text">User</span>
-            <span class="pronouns">⚠️ alerta de especialista</span>
-            <span>♥</span>
-        </div>
-        <div class="bio">be kind and take care</div>
-
-        <div class="links-container">
-            <a href="https://youtube.com" class="btn"><i class="fab fa-youtube"></i> youtube</a>
-            <a href="https://twitter.com" class="btn"><i class="fab fa-twitter"></i> twitter</a>
-            <a href="#" class="btn"><i class="fab fa-steam"></i> steam</a>
-            <a href="#" class="btn"><i class="fas fa-gamepad"></i> setup & peripherals</a>
-            <a href="#" class="btn"><i class="fas fa-coffee"></i> ko-fi</a>
+        <div class="info">
+            <h1 id="username">Carregando...</h1>
+            <p id="custom-status">be kind and take care</p>
         </div>
 
-        <img src="https://tenor.com/view/neymar-gif-25482750" class="decoration-img">
-
-        <div class="discord-card">
-            <img id="mini-pfp" src="" class="discord-mini-avatar">
-            <div class="discord-info">
-                <h4 id="discord-tag">loading...</h4>
-                <p id="discord-status">Offline</p>
-            </div>
-        </div>
-        
-        <div style="margin-top: 15px; font-size: 12px; color: #888;">20250926</div>
-    </div>
-
-    <script>
-        // ==========================================
-        //  COLOQUE SEU ID AQUI EMBAIXO
-        // ==========================================
-        const DISCORD_ID = "1306661332128501802"; 
-        
-        async function fetchLanyard() {
-            try {
-                const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
-                const data = await res.json();
-                
-                if (!data.success) {
-                    console.error("Erro: Verifique se você está no servidor do Lanyard ou se o ID está certo.");
-                    return;
-                }
-
-                const user = data.data.discord_user;
-                const status = data.data.discord_status;
-                const avatar = `https://cdn.discordapp.com/avatars/${DISCORD_ID}/${user.avatar}.png?size=512`;
-
-                // Atualizar Elementos
-                document.getElementById('pfp').src = avatar;
-                document.getElementById('mini-pfp').src = avatar;
-                document.getElementById('favicon').href = avatar; // Fotinha na aba
-                document.getElementById('username-text').innerText = user.username;
-                document.getElementById('discord-tag').innerText = user.username;
-                
-                // Atualizar Status (Texto e Bolinha)
-                const statusText = document.getElementById('discord-status');
-                const dot = document.getElementById('status-dot');
-                
-                // Mapear cores do status
-                const colors = {
-                    online: "#3ba55c",
-                    idle: "#faa61a",
-                    dnd: "#ed4245",
-                    offline: "#747f8d"
-                };
-                
-                dot.style.backgroundColor = colors[status] || colors.offline;
-                statusText.innerText = data.data.activities[0] ? data.data.activities[0].state : status;
-
-            } catch (e) {
-                console.log("Erro ao carregar API");
-            }
-        }
-
-        fetchLanyard();
-        
-        // Atualiza a cada 30 segundos
-        setInterval(fetchLanyard, 30000);
-    </script>
-
-</body>
-</html>
+        <div class="links">
+            <a href="#" class="btn"><i class="fab fa-youtube"></i> Youtube</a>
+            <a href="#" class="btn"><i class="fab fa-twitter"></i> Twitter</a>
