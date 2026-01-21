@@ -15,7 +15,7 @@
 
         body {
             background-color: #050505;
-            font-family: 'Inter', sans-serif; /* Fonte normal solicitada */
+            font-family: 'Inter', sans-serif;
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,26 +24,26 @@
             color: #fff;
         }
 
-        /* ================= BACKGROUND (IMAGEM) ================= */
+        /* ================= BACKGROUND ================= */
         .bg-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             
-            /* TROQUE O LINK ABAIXO PELA SUA IMAGEM/GIF */
-            background: url(https://ibb.co/1frJPPvw) no-repeat center center/cover;
+            /* Tentei pegar o link direto da sua imagem. Se falhar, coloque o link direto (.png/.jpg) aqui */
+            background: url('https://i.ibb.co/1frJPPvw/image.png') no-repeat center center/cover;
             
             z-index: -2;
-            filter: brightness(0.3); /* Escurece a imagem para o texto aparecer bem */
+            filter: brightness(0.3); /* Escurece para destacar o texto */
         }
 
-        /* Efeito de Neve (Mantido pois dá um visual "pro") */
+        /* Neve (Efeito Pro) */
         .snow {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
             z-index: 1;
             background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.6;
+            opacity: 0.5;
             animation: snow 30s linear infinite;
         }
         @keyframes snow { from { background-position: 0 0; } to { background-position: 0 1000px; } }
@@ -53,49 +53,32 @@
             width: 30px; height: 30px;
             position: fixed; pointer-events: none; z-index: 9999;
             transform: translate(-50%, -50%);
-            mix-blend-mode: difference; /* Inverte a cor no branco (para não sumir) */
+            mix-blend-mode: difference;
         }
-        /* Linha Horizontal */
-        .cursor-crosshair::before {
-            content: ''; position: absolute;
-            top: 50%; left: 50%;
-            width: 14px; height: 2px;
-            background: white;
-            transform: translate(-50%, -50%);
-            border-radius: 2px;
+        .cursor-crosshair::before, .cursor-crosshair::after {
+            content: ''; position: absolute; top: 50%; left: 50%; background: white; border-radius: 2px; transform: translate(-50%, -50%);
         }
-        /* Linha Vertical */
-        .cursor-crosshair::after {
-            content: ''; position: absolute;
-            top: 50%; left: 50%;
-            width: 2px; height: 14px;
-            background: white;
-            transform: translate(-50%, -50%);
-            border-radius: 2px;
-        }
+        .cursor-crosshair::before { width: 14px; height: 2px; } /* Horizontal */
+        .cursor-crosshair::after { width: 2px; height: 14px; } /* Vertical */
 
-        /* ================= CARD PRINCIPAL (Vidro) ================= */
+        /* ================= CARD PRINCIPAL (Vidro Dark) ================= */
         .card {
-            background: rgba(18, 18, 18, 0.75); /* Fundo escuro translúcido */
-            backdrop-filter: blur(20px) saturate(160%); /* Efeito Blur forte */
-            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             width: 100%;
             max-width: 420px;
             border-radius: 24px;
             padding: 50px 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08); /* Borda fina sutil */
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
             position: relative;
             z-index: 10;
         }
 
-        /* Avatar com Glow */
-        .avatar-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
+        /* Avatar */
+        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 20px; }
 
         #pfp {
             width: 110px; height: 110px;
@@ -104,52 +87,29 @@
             object-fit: cover;
         }
 
-        /* Brilho atrás da foto (muda de cor com status) */
+        /* Glow do Status */
         .status-glow {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(15px);
-            transition: background 0.5s;
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 50%; z-index: -1; opacity: 0.5; filter: blur(20px); transition: background 0.5s;
         }
 
         /* Nome Animado */
         h1 {
-            font-size: 26px;
-            font-weight: 800; /* Negrito da fonte Inter */
-            margin-bottom: 5px;
-            color: #fff;
-            letter-spacing: -0.5px;
-            
-            /* Animação Shine */
-            background: linear-gradient(to right, #fff 20%, #888 50%, #fff 80%);
+            font-size: 26px; font-weight: 800; margin-bottom: 5px; color: #fff; letter-spacing: -0.5px;
+            background: linear-gradient(to right, #fff 20%, #777 50%, #fff 80%);
             background-size: 200% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
         }
         @keyframes shine { to { background-position: 200% center; } }
 
-        p.bio {
-            font-size: 14px;
-            color: #a0a0a0;
-            margin-bottom: 35px;
-            font-weight: 500;
-        }
+        p.bio { font-size: 14px; color: #a0a0a0; margin-bottom: 35px; font-weight: 500; }
 
-        /* Links Clean */
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            width: 100%;
-        }
+        /* Links */
+        .links { display: flex; flex-direction: column; gap: 14px; width: 100%; }
 
         .btn {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
             color: #e0e0e0;
             text-decoration: none;
@@ -157,48 +117,28 @@
             border-radius: 12px;
             font-weight: 600;
             font-size: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: all 0.3s ease;
         }
-
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); color: #fff;
         }
 
         /* GIF Decorativo */
         .decoration-gif {
-            width: 50px;
-            border-radius: 6px;
-            margin: 30px auto 20px auto;
-            display: block;
-            opacity: 0.8;
-            filter: grayscale(100%);
-            transition: 0.3s;
+            width: 50px; border-radius: 6px; margin: 30px auto 20px auto; display: block;
+            opacity: 0.8; filter: grayscale(100%); transition: 0.3s;
         }
         .decoration-gif:hover { filter: grayscale(0%); transform: scale(1.1); opacity: 1; }
 
         /* Footer Discord */
         .discord-card {
-            background: #000;
-            padding: 12px 15px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 10px;
-            text-align: left;
+            background: #000; padding: 12px 15px; border-radius: 12px;
+            display: flex; align-items: center; gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 10px; text-align: left;
         }
-
         .discord-mini { width: 40px; height: 40px; border-radius: 8px; }
-        
         .discord-info h4 { font-size: 14px; color: #fff; margin: 0; font-weight: 700; }
         .discord-info span { font-size: 12px; color: #777; font-weight: 500; }
 
@@ -208,7 +148,6 @@
 
     <div class="bg-image"></div>
     <div class="snow"></div>
-
     <div class="cursor-crosshair" id="cursor"></div>
 
     <div class="card">
@@ -222,10 +161,18 @@
         <p class="bio">be kind and take care</p>
 
         <div class="links">
-            <a href="https://youtube.com" target="_blank" class="btn"><i class="fab fa-youtube"></i> Youtube</a>
-            <a href="https://twitter.com" target="_blank" class="btn"><i class="fab fa-twitter"></i> Twitter</a>
-            <a href="#" class="btn"><i class="fab fa-steam"></i> Steam</a>
-            <a href="#" class="btn"><i class="fas fa-microchip"></i> Setup</a>
+            <a href="https://www.youtube.com/@vnxtryy" target="_blank" class="btn">
+                <i class="fab fa-youtube"></i> Youtube
+            </a>
+            <a href="https://x.com/VinciusAug53351" target="_blank" class="btn">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <a href="https://steamcommunity.com/profiles/76561199673427488/" target="_blank" class="btn">
+                <i class="fab fa-steam"></i> Steam
+            </a>
+            <a href="https://pt.namemc.com/profile/vnxtryy.1" target="_blank" class="btn">
+                <i class="fas fa-cube"></i> NameMC
+            </a>
         </div>
 
         <img src="https://media.tenor.com/AvkZ8t_a52AAAAAC/neymar.gif" class="decoration-gif">
@@ -241,17 +188,14 @@
     </div>
 
     <script>
-        // SEU ID
         const USER_ID = "1306661332128501802"; 
 
-        /* Lógica do Cursor (+) */
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        /* Lógica do Discord */
         async function updateProfile() {
             try {
                 const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
@@ -261,33 +205,25 @@
                 const data = json.data;
                 const user = data.discord_user;
 
-                // Fotos
                 const avatar = `https://cdn.discordapp.com/avatars/${USER_ID}/${user.avatar}.png?size=512`;
                 document.getElementById('pfp').src = avatar;
                 document.getElementById('mini-pfp').src = avatar;
                 document.getElementById('favicon').href = avatar;
                 
-                // Textos
                 document.getElementById('footer-user').innerText = user.username;
 
-                // Cores do Status
-                const statusColors = { 
-                    online: "#43b581", idle: "#faa61a", dnd: "#f04747", offline: "#747f8d" 
-                };
+                const statusColors = { online: "#43b581", idle: "#faa61a", dnd: "#f04747", offline: "#747f8d" };
                 const color = statusColors[data.discord_status] || statusColors.offline;
                 
-                // Aplica Glow
                 document.getElementById('glow').style.backgroundColor = color;
                 document.getElementById('glow').style.boxShadow = `0 0 25px ${color}`;
 
-                // Atividade
                 if (data.activities && data.activities.length > 0) {
                     let act = data.activities.find(a => a.type !== 4) || data.activities[0];
                     document.getElementById('activity').innerText = act.type === 4 ? act.state : act.name;
                 } else {
                     document.getElementById('activity').innerText = data.discord_status;
                 }
-
             } catch (e) { console.log(e); }
         }
 
