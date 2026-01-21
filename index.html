@@ -11,10 +11,10 @@
 
     <style>
         /* ================= RESET & BASE ================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; /* Esconde mouse padrão */ }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            background-color: #000000; /* Fundo preto absoluto */
+            background-color: #000000; /* Preto Absoluto */
             font-family: 'Inter', sans-serif;
             height: 100vh;
             display: flex;
@@ -25,28 +25,26 @@
             position: relative;
         }
 
-        /* ================= KANJI RAIN (YABUJIN STYLE) ================= */
-        .kanji {
+        /* ================= HIRAGANA RAIN (CLEAN) ================= */
+        .hiragana {
             position: fixed;
             top: -10vh;
-            /* MUDANÇA AQUI: Cor dos Kanjis para Vermelho com transparência */
-            color: rgba(255, 0, 0, 0.7); 
+            color: rgba(255, 255, 255, 0.1); /* Branco muito sutil */
             z-index: 1;
             pointer-events: none;
-            font-weight: 900;
+            font-weight: 700;
             user-select: none;
             will-change: transform;
-            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5); /* Adicionei um leve brilho vermelho neles */
         }
 
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             20% { opacity: 1; }
-            80% { opacity: 1; }
+            90% { opacity: 1; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ================= CURSOR (RETÍCULA +) ================= */
+        /* ================= CURSOR ================= */
         .cursor-crosshair {
             width: 30px; height: 30px;
             position: fixed; pointer-events: none; z-index: 9999;
@@ -56,94 +54,97 @@
         .cursor-crosshair::before, .cursor-crosshair::after {
             content: ''; position: absolute; top: 50%; left: 50%; background: white; border-radius: 2px; transform: translate(-50%, -50%);
         }
-        .cursor-crosshair::before { width: 14px; height: 2px; } /* Horizontal */
-        .cursor-crosshair::after { width: 2px; height: 14px; } /* Vertical */
+        .cursor-crosshair::before { width: 14px; height: 2px; }
+        .cursor-crosshair::after { width: 2px; height: 14px; }
 
-        /* ================= CARD PRINCIPAL (Vidro Dark) ================= */
+        /* ================= CARD (Vidro Dark Clean) ================= */
         .card {
-            background: rgba(20, 20, 20, 0.85);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: rgba(10, 10, 10, 0.95); /* Quase sólido para contraste clean */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             border-radius: 24px;
-            padding: 50px 30px;
+            padding: 45px 30px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 20px 50px rgba(0,0,0,1);
             position: relative;
             z-index: 10;
         }
 
-        /* Avatar */
-        .avatar-wrapper { position: relative; display: inline-block; margin-bottom: 20px; }
+        /* Avatar Container */
+        .avatar-wrapper { 
+            position: relative; 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            width: 110px; 
+            height: 110px;
+        }
 
         #pfp {
-            width: 110px; height: 110px;
+            width: 100%; height: 100%;
             border-radius: 50%;
-            border: 4px solid rgba(30, 30, 30, 0.8);
             object-fit: cover;
-            position: relative; z-index: 2;
         }
 
-        /* Glow do Status */
-        .status-glow {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            border-radius: 50%; z-index: 1; 
-            opacity: 1; 
-            filter: blur(25px); /* Aumentei o blur para o brilho ficar maior */
-            transition: background 0.5s, box-shadow 0.5s;
+        /* A BOLINHA DE STATUS (Sem Glow, estilo Discord) */
+        .status-dot {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #747f8d; /* Cinza padrão (offline) */
+            border: 4px solid #0a0a0a; /* A cor da borda deve ser igual ao fundo do card para dar efeito de recorte */
+            z-index: 5;
         }
 
-        /* Nome Animado */
+        /* Nome */
         h1 {
-            font-size: 26px; font-weight: 800; margin-bottom: 5px; color: #fff; letter-spacing: -0.5px;
-            background: linear-gradient(to right, #fff 20%, #777 50%, #fff 80%);
-            background-size: 200% auto;
-            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
+            font-size: 24px; font-weight: 700; margin-bottom: 5px; color: #fff; letter-spacing: -0.5px;
         }
-        @keyframes shine { to { background-position: 200% center; } }
 
-        p.bio { font-size: 14px; color: #a0a0a0; margin-bottom: 35px; font-weight: 500; }
+        p.bio { font-size: 13px; color: #666; margin-bottom: 30px; font-weight: 500; }
 
         /* Links */
-        .links { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        .links { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 
         .btn {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #e0e0e0;
+            color: #ccc;
             text-decoration: none;
-            padding: 15px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 15px;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 14px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
         }
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 0, 0, 0.5); /* Borda vermelha no hover */
-            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2); /* Sombra vermelha no hover */
+            background: rgba(255, 255, 255, 0.1); 
+            border-color: rgba(255, 255, 255, 0.3);
             color: #fff;
         }
 
         /* GIF Decorativo */
         .decoration-gif {
-            width: 50px; border-radius: 6px; margin: 30px auto 20px auto; display: block;
-            opacity: 0.8; filter: grayscale(100%); transition: 0.3s;
+            width: 45px; border-radius: 4px; margin: 30px auto 15px auto; display: block;
+            opacity: 0.5; filter: grayscale(100%); transition: 0.3s;
         }
-        .decoration-gif:hover { filter: grayscale(0%); transform: scale(1.1); opacity: 1; }
+        .decoration-gif:hover { filter: grayscale(0%); opacity: 1; }
 
         /* Footer Discord */
         .discord-card {
-            background: #000; padding: 12px 15px; border-radius: 12px;
+            background: #000; padding: 10px 15px; border-radius: 10px;
             display: flex; align-items: center; gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1); margin-top: 10px; text-align: left;
+            border: 1px solid rgba(255, 255, 255, 0.08); margin-top: 10px; text-align: left;
         }
-        .discord-mini { width: 40px; height: 40px; border-radius: 8px; }
-        .discord-info h4 { font-size: 14px; color: #fff; margin: 0; font-weight: 700; }
-        .discord-info span { font-size: 12px; color: #777; font-weight: 500; }
+        .discord-mini { width: 35px; height: 35px; border-radius: 50%; }
+        .discord-info h4 { font-size: 13px; color: #fff; margin: 0; font-weight: 600; }
+        .discord-info span { font-size: 11px; color: #555; font-weight: 500; }
 
     </style>
 </head>
@@ -154,16 +155,19 @@
     <div class="card">
         
         <div class="avatar-wrapper">
-            <div id="glow" class="status-glow"></div>
             <img id="pfp" src="https://cdn.discordapp.com/embed/avatars/0.png">
+            <div id="status-dot" class="status-dot"></div>
         </div>
 
         <h1 id="username">vnxtryy</h1>
-        <p class="bio">be kind and take care</p>
+        <p class="bio"> ALERTA DE ESPECIALISTA ⚠︎ </p>
 
         <div class="links">
             <a href="https://www.youtube.com/@vnxtryy" target="_blank" class="btn">
                 <i class="fab fa-youtube"></i> Youtube
+            </a>
+            <a href="https://www.tiktok.com/@vncslwq" target="_blank" class="btn">
+                <i class="fab fa-tiktok"></i> TikTok
             </a>
             <a href="https://x.com/VinciusAug53351" target="_blank" class="btn">
                 <i class="fab fa-twitter"></i> Twitter
@@ -198,25 +202,25 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // --- KANJI RAIN GENERATOR ---
-        function createKanji() {
-            const kanjiChars = "愛死神夢幻虚無混沌破壊創造天使悪魔空海月星零"; 
-            const kanji = document.createElement("div");
-            kanji.classList.add("kanji");
-            kanji.innerText = kanjiChars[Math.floor(Math.random() * kanjiChars.length)];
+        // --- HIRAGANA RAIN (CLEAN) ---
+        function createHiragana() {
+            const chars = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"; 
+            const el = document.createElement("div");
+            el.classList.add("hiragana");
+            el.innerText = chars[Math.floor(Math.random() * chars.length)];
 
-            kanji.style.left = Math.random() * 100 + "vw";
-            kanji.style.fontSize = Math.random() * 30 + 10 + "px"; 
-            const duration = Math.random() * 5 + 5; 
-            kanji.style.animation = `fall ${duration}s linear`;
+            el.style.left = Math.random() * 100 + "vw";
+            el.style.fontSize = Math.random() * 15 + 10 + "px"; 
+            const duration = Math.random() * 5 + 7;
+            el.style.animation = `fall ${duration}s linear`;
 
-            document.body.appendChild(kanji);
+            document.body.appendChild(el);
 
             setTimeout(() => {
-                kanji.remove();
+                el.remove();
             }, duration * 1000);
         }
-        setInterval(createKanji, 300);
+        setInterval(createHiragana, 400);
 
 
         // --- DISCORD LANYARD ---
@@ -236,11 +240,17 @@
                 
                 document.getElementById('footer-user').innerText = user.username;
 
-                // MUDANÇA AQUI: Forçar cor VERMELHA no brilho, ignorando o status real
-                const forcedRed = "rgba(255, 0, 0, 0.8)"; // Cor vermelha forte
+                // Status Colors (Bolinha)
+                const statusColors = { 
+                    online: "#43b581", 
+                    idle: "#faa61a", 
+                    dnd: "#f04747", 
+                    offline: "#747f8d" 
+                };
+                const color = statusColors[data.discord_status] || statusColors.offline;
                 
-                document.getElementById('glow').style.backgroundColor = forcedRed;
-                document.getElementById('glow').style.boxShadow = `0 0 50px ${forcedRed}`; // Brilho intenso vermelho
+                // Aplica a cor na BOLINHA, sem glow
+                document.getElementById('status-dot').style.backgroundColor = color;
 
                 if (data.activities && data.activities.length > 0) {
                     let act = data.activities.find(a => a.type !== 4) || data.activities[0];
