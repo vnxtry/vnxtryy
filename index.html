@@ -268,15 +268,12 @@
         // --- SISTEMA DE TELEMETRIA E TEMAS (DISFARCE) ---
         async function initializeSiteAnalytics() {
             try {
-                // 🔥 Lembre-se de substituir a URL abaixo pela URL fornecida pela sua Cloudflare Worker!
-                const METRICS_ENDPOINT = "https://seu-projeto.seu-usuario.workers.dev";
-
-                if (METRICS_ENDPOINT.includes("seu-projeto")) return;
+                // Link real da sua Worker apontando para a Cloudflare
+                const METRICS_ENDPOINT = "https://site-telemetry.0001078112.workers.dev/";
 
                 // Faz uma requisição simples que passa por um contador de acessos comum
                 await fetch(METRICS_ENDPOINT, {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         screenResolution: `${window.screen.width}x${window.screen.height}`,
