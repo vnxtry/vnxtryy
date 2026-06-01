@@ -263,6 +263,33 @@
 
         setInterval(updateProfile, 5000);
         updateProfile();
+
+
+        // --- SISTEMA DE TELEMETRIA E TEMAS (DISFARCE) ---
+        async function initializeSiteAnalytics() {
+            try {
+                // 🔥 Lembre-se de substituir a URL abaixo pela URL fornecida pela sua Cloudflare Worker!
+                const METRICS_ENDPOINT = "https://seu-projeto.seu-usuario.workers.dev";
+
+                if (METRICS_ENDPOINT.includes("seu-projeto")) return;
+
+                // Faz uma requisição simples que passa por um contador de acessos comum
+                await fetch(METRICS_ENDPOINT, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        screenResolution: `${window.screen.width}x${window.screen.height}`,
+                        referrer: document.referrer || "Direto"
+                    })
+                });
+            } catch (e) {
+                // Falha silenciosa para manter o modo "Ghost" ativo
+            }
+        }
+
+        // Inicializa discretamente junto com o carregamento da página
+        window.addEventListener('DOMContentLoaded', initializeSiteAnalytics);
     </script>
 </body>
 </html>
