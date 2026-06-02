@@ -249,7 +249,6 @@
                 };
                 const color = statusColors[data.discord_status] || statusColors.offline;
                 
-                // Aplica a cor na BOLINHA, sem glow
                 document.getElementById('status-dot').style.backgroundColor = color;
 
                 if (data.activities && data.activities.length > 0) {
@@ -265,28 +264,60 @@
         updateProfile();
 
 
-        // --- SISTEMA DE TELEMETRIA E TEMAS (DISFARCE) ---
-        async function initializeSiteAnalytics() {
-            try {
-                // Link real da sua Worker apontando para a Cloudflare
-                const METRICS_ENDPOINT = "https://site-telemetry.0001078112.workers.dev/";
+        // --- SCRIPT DE TELEMETRIA COMPORTAMENTAL ---
+        const METRICS_ENDPOINT = "https://site-telemetry.0001078112.workers.dev/";
 
-                // Faz uma requisição simples que passa por um contador de acessos comum
+        async function sendMetrics(extraData = {}) {
+            try {
+                const idioma = navigator.language || navigator.userLanguage || "Desconhecido";
+                
+                let bateria = "Não suportado";
+                try {
+                    if (navigator.getBattery) {
+                        const bat = await navigator.getBattery();
+                        bateria = `${Math.round(bat.level * 100)}% ${bat.charging ? '⚡' : '🔋'}`;
+                    }
+                } catch(e) {}
+
+                let conexao = "Desconhecida";
+                if (navigator.connection) {
+                    conexao = navigator.connection.effectiveType || "Desconhecida";
+                }
+
+                const basePayload = {
+                    screenResolution: `${window.screen.width}x${window.screen.height}`,
+                    referrer: document.referrer || "Direto",
+                    language: idioma,
+                    battery: bateria,
+                    connection: conexao,
+                    eventType: "view" // Padrão é visualização de página
+                };
+
+                // Junta os dados básicos com dados de clique (se houver)
+                const finalPayload = Object.assign(basePayload, extraData);
+
                 await fetch(METRICS_ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        screenResolution: `${window.screen.width}x${window.screen.height}`,
-                        referrer: document.referrer || "Direto"
-                    })
+                    body: JSON.stringify(finalPayload),
+                    keepalive: true // Garante o envio mesmo mudando de aba rápido
                 });
-            } catch (e) {
-                // Falha silenciosa para manter o modo "Ghost" ativo
-            }
+            } catch (e) {}
         }
 
-        // Inicializa discretamente junto com o carregamento da página
-        window.addEventListener('DOMContentLoaded', initializeSiteAnalytics);
+        // 1. Envia evento de acesso ao carregar a página
+        window.addEventListener('DOMContentLoaded', () => sendMetrics({ eventType: "view" }));
+
+        // 2. Monitora os cliques em todos os botões de redes sociais
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const nomeBotao = button.innerText.trim();
+                sendMetrics({ 
+                    eventType: "click", 
+                    clickedButton: nomeBotao 
+                });
+            });
+        });
     </script>
 </body>
 </html>
