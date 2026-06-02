@@ -1,3 +1,15 @@
+Com certeza! Vamos transformar esse design em um nível **Premium / Cyber-Minimalista (Tier 3+)**.
+
+Para atingir esse nível de design que agências internacionais de tecnologia usam, nós aplicamos quatro segredos visuais:
+
+1. **Profundidade de Campo (3D Fake):** Adicionar um fundo com malha digital e gradiente radial para o card parecer flutuar no espaço.
+2. **Micro-interações Orgânicas:** Trocar as animações duras por transições suaves usando curvas de aceleração `cubic-bezier` (suavidade extrema).
+3. **Bordas de Alta Definição:** Usar linhas extremamente finas e semitransparentes com sombras sobrepostas para criar o verdadeiro efeito "vidro fumê".
+4. **Tipografia Corrigida:** Ajustar o espaçamento entre letras (`letter-spacing`) e pesos visuais para dar um ar institucional e misterioso.
+
+Aqui está o seu arquivo `index.html` completamente repaginado com o novo design de alta fidelidade e mantendo todo o seu sistema de telemetria intacto:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,15 +18,27 @@
     <title>vnxtryy</title>
     <link rel="icon" id="favicon" href="">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ================= RESET & BASE ================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+        /* ================= RESET & CONFIGURAÇÕES BASE ================= */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            cursor: none; 
+            user-select: none;
+        }
 
         body {
-            background-color: #000000; /* Preto Absoluto */
+            background-color: #050505;
+            /* Malha Digital Cyberpunk de fundo + Iluminação Central */
+            background-image: 
+                radial-gradient(circle at center, rgba(15, 15, 15, 0.8) 0%, #000000 100%),
+                linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 100%, 24px 24px, 24px 24px;
             font-family: 'Inter', sans-serif;
             height: 100vh;
             display: flex;
@@ -25,126 +49,198 @@
             position: relative;
         }
 
-        /* ================= HIRAGANA RAIN (CLEAN) ================= */
+        /* ================= HIRAGANA RAIN (Efeito de Profundidade) ================= */
         .hiragana {
             position: fixed;
             top: -10vh;
-            color: rgba(255, 255, 255, 0.1); /* Branco muito sutil */
+            color: rgba(255, 255, 255, 0.03); /* Suavizado para não poluir */
             z-index: 1;
             pointer-events: none;
-            font-weight: 700;
-            user-select: none;
+            font-weight: 900;
             will-change: transform;
+            filter: blur(0.5px); /* Efeito analógico sutil */
         }
 
         @keyframes fall {
             0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            20% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateY(115vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ================= CURSOR ================= */
+        /* ================= CURSOR PRECIOSO (CROSSHAIR + GLOW) ================= */
         .cursor-crosshair {
-            width: 30px; height: 30px;
-            position: fixed; pointer-events: none; z-index: 9999;
+            width: 32px; 
+            height: 32px;
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 9999;
             transform: translate(-50%, -50%);
             mix-blend-mode: difference;
+            transition: transform 0.1s ease-out;
         }
         .cursor-crosshair::before, .cursor-crosshair::after {
-            content: ''; position: absolute; top: 50%; left: 50%; background: white; border-radius: 2px; transform: translate(-50%, -50%);
+            content: ''; position: absolute; top: 50%; left: 50%; background: #ffffff; border-radius: 1px; transform: translate(-50%, -50%);
         }
-        .cursor-crosshair::before { width: 14px; height: 2px; }
-        .cursor-crosshair::after { width: 2px; height: 14px; }
+        .cursor-crosshair::before { width: 16px; height: 1.5px; }
+        .cursor-crosshair::after { width: 1.5px; height: 16px; }
 
-        /* ================= CARD (Vidro Dark Clean) ================= */
+        /* ================= CARD PREMIUM (Vidro Fumê Avançado) ================= */
         .card {
-            background: rgba(10, 10, 10, 0.95); /* Quase sólido para contraste clean */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(13, 13, 13, 0.85) 0%, rgba(8, 8, 8, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             width: 100%;
-            max-width: 400px;
-            border-radius: 24px;
-            padding: 45px 30px;
+            max-width: 380px;
+            border-radius: 28px;
+            padding: 40px 28px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 0 1px rgba(0,0,0,1), 0 20px 50px rgba(0,0,0,1);
+            /* Borda dupla simulada por Box-Shadow + Borda real ultrafina */
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 
+                0px 0px 1px 1px rgba(255, 255, 255, 0.02) inset,
+                0px 24px 60px rgba(0, 0, 0, 0.8),
+                0px 4px 12px rgba(0, 0, 0, 0.5);
             position: relative;
             z-index: 10;
+            transform: scale(1);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card:hover {
+            transform: scale(1.01);
         }
 
-        /* Avatar Container */
+        /* Avatar Pro */
         .avatar-wrapper { 
             position: relative; 
             display: inline-block; 
-            margin-bottom: 20px; 
-            width: 110px; 
-            height: 110px;
+            margin-bottom: 22px; 
+            width: 115px; 
+            height: 115px;
         }
 
         #pfp {
-            width: 100%; height: 100%;
+            width: 100%; 
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
         }
 
-        /* A BOLINHA DE STATUS (Sem Glow, estilo Discord) */
+        /* Bolinha de Status (Polida de Alta Fidelidade) */
         .status-dot {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
+            bottom: 4px;
+            right: 4px;
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background-color: #747f8d; /* Cinza padrão (offline) */
-            border: 4px solid #0a0a0a; /* A cor da borda deve ser igual ao fundo do card para dar efeito de recorte */
+            background-color: #747f8d; 
+            border: 4.5px solid #090909; /* Recorte perfeito */
             z-index: 5;
+            transition: background-color 0.3s ease;
         }
 
-        /* Nome */
+        /* Tipografia Corrigida */
         h1 {
-            font-size: 24px; font-weight: 700; margin-bottom: 5px; color: #fff; letter-spacing: -0.5px;
+            font-size: 26px; 
+            font-weight: 700; 
+            margin-bottom: 6px; 
+            color: #ffffff; 
+            letter-spacing: -0.8px;
         }
 
-        p.bio { font-size: 13px; color: #666; margin-bottom: 30px; font-weight: 500; }
+        p.bio { 
+            font-size: 11px; 
+            color: #555555; 
+            margin-bottom: 32px; 
+            font-weight: 700; 
+            letter-spacing: 2.5px; /* Estilo tracking militar/cyber */
+            text-transform: uppercase;
+        }
 
-        /* Links */
-        .links { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+        /* ================= BOTOES CINEMATOGRÁFICOS ================= */
+        .links { display: flex; flex-direction: column; gap: 10px; width: 100%; }
 
         .btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: #ccc;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: #aaaaaa;
             text-decoration: none;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 15px;
+            border-radius: 14px;
             font-weight: 500;
-            font-size: 14px;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: all 0.2s;
+            font-size: 13.5px;
+            letter-spacing: -0.2px;
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; /* Texto na esquerda, ícone sutil na direita */
+            padding-left: 20px;
+            padding-right: 20px;
+            /* Transição ultra responsiva baseada em Física Real */
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Ícone principal */
+        .btn i:first-child {
+            font-size: 15px;
+            margin-right: -10px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Efeito de iluminação e aproximação ao passar o mouse */
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1); 
-            border-color: rgba(255, 255, 255, 0.3);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.04); 
+            border-color: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transform: translateY(-1.5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:hover i:first-child {
+            transform: scale(1.15);
         }
 
-        /* GIF Decorativo */
+        /* ================= ELEMENTOS DE DECORAÇÃO MIDIA ================= */
         .decoration-gif {
-            width: 45px; border-radius: 4px; margin: 30px auto 15px auto; display: block;
-            opacity: 0.5; filter: grayscale(100%); transition: 0.3s;
+            width: 42px; 
+            border-radius: 6px; 
+            margin: 28px auto 12px auto; 
+            display: block;
+            opacity: 0.25; 
+            filter: grayscale(100%); 
+            transition: all 0.3s ease;
         }
-        .decoration-gif:hover { filter: grayscale(0%); opacity: 1; }
+        .decoration-gif:hover { 
+            filter: grayscale(0%); 
+            opacity: 0.8; 
+            transform: scale(1.05);
+        }
 
-        /* Footer Discord */
+        /* ================= CONTAINER MINIMALISTA DO DISCORD ================= */
         .discord-card {
-            background: #000; padding: 10px 15px; border-radius: 10px;
-            display: flex; align-items: center; gap: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.08); margin-top: 10px; text-align: left;
+            background: rgba(0, 0, 0, 0.4); 
+            padding: 12px 16px; 
+            border-radius: 14px;
+            display: flex; 
+            align-items: center; 
+            gap: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.02); 
+            margin-top: 12px; 
+            text-align: left;
+            box-shadow: inset 0 1px 4px rgba(0,0,0,0.6);
         }
-        .discord-mini { width: 35px; height: 35px; border-radius: 50%; }
-        .discord-info h4 { font-size: 13px; color: #fff; margin: 0; font-weight: 600; }
-        .discord-info span { font-size: 11px; color: #555; font-weight: 500; }
+        .discord-mini { 
+            width: 36px; 
+            height: 36px; 
+            border-radius: 50%; 
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .discord-info h4 { font-size: 13px; color: #ffffff; margin: 0; font-weight: 600; letter-spacing: -0.3px; }
+        .discord-info span { font-size: 11px; color: #444444; font-weight: 500; display: block; margin-top: 1px; }
 
     </style>
 </head>
@@ -160,23 +256,28 @@
         </div>
 
         <h1 id="username">vnxtryy</h1>
-        <p class="bio"> ALERTA DE ESPECIALISTA ⚠︎ </p>
+        <p class="bio">Alerta de Especialista ⚠︎</p>
 
         <div class="links">
             <a href="https://www.youtube.com/@vnxtryy" target="_blank" class="btn">
-                <i class="fab fa-youtube"></i> Youtube
+                <span><i class="fab fa-youtube" style="margin-right: 12px;"></i> Youtube</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.3;"></i>
             </a>
             <a href="https://www.tiktok.com/@vncslwq" target="_blank" class="btn">
-                <i class="fab fa-tiktok"></i> TikTok
+                <span><i class="fab fa-tiktok" style="margin-right: 12px;"></i> TikTok</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.3;"></i>
             </a>
             <a href="https://x.com/VinciusAug53351" target="_blank" class="btn">
-                <i class="fab fa-twitter"></i> Twitter
+                <span><i class="fab fa-twitter" style="margin-right: 12px;"></i> Twitter</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.3;"></i>
             </a>
             <a href="https://steamcommunity.com/profiles/76561199673427488/" target="_blank" class="btn">
-                <i class="fab fa-steam"></i> Steam
+                <span><i class="fab fa-steam" style="margin-right: 12px;"></i> Steam</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.3;"></i>
             </a>
             <a href="https://pt.namemc.com/profile/vnxtryy.1" target="_blank" class="btn">
-                <i class="fas fa-cube"></i> NameMC
+                <span><i class="fas fa-cube" style="margin-right: 12px;"></i> NameMC</span>
+                <i class="fas fa-chevron-right" style="font-size: 10px; opacity: 0.3;"></i>
             </a>
         </div>
 
@@ -195,14 +296,14 @@
     <script>
         const USER_ID = "1306661332128501802"; 
 
-        // --- CURSOR ---
+        // --- CURSOR SMOOTH ---
         const cursor = document.getElementById('cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
 
-        // --- HIRAGANA RAIN (CLEAN) ---
+        // --- HIRAGANA RAIN (DEEP MODE) ---
         function createHiragana() {
             const chars = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"; 
             const el = document.createElement("div");
@@ -210,20 +311,18 @@
             el.innerText = chars[Math.floor(Math.random() * chars.length)];
 
             el.style.left = Math.random() * 100 + "vw";
-            el.style.fontSize = Math.random() * 15 + 10 + "px"; 
-            const duration = Math.random() * 5 + 7;
+            el.style.fontSize = Math.random() * 12 + 10 + "px"; 
+            const duration = Math.random() * 6 + 8;
             el.style.animation = `fall ${duration}s linear`;
 
             document.body.appendChild(el);
 
-            setTimeout(() => {
-                el.remove();
-            }, duration * 1000);
+            setTimeout(() => { el.remove(); }, duration * 1000);
         }
-        setInterval(createHiragana, 400);
+        setInterval(createHiragana, 450);
 
 
-        // --- DISCORD LANYARD ---
+        // --- DISCORD LANYARD API ---
         async function updateProfile() {
             try {
                 const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
@@ -240,7 +339,6 @@
                 
                 document.getElementById('footer-user').innerText = user.username;
 
-                // Status Colors (Bolinha)
                 const statusColors = { 
                     online: "#43b581", 
                     idle: "#faa61a", 
@@ -290,28 +388,25 @@
                     language: idioma,
                     battery: bateria,
                     connection: conexao,
-                    eventType: "view" // Padrão é visualização de página
+                    eventType: "view"
                 };
 
-                // Junta os dados básicos com dados de clique (se houver)
                 const finalPayload = Object.assign(basePayload, extraData);
 
                 await fetch(METRICS_ENDPOINT, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(finalPayload),
-                    keepalive: true // Garante o envio mesmo mudando de aba rápido
+                    keepalive: true
                 });
             } catch (e) {}
         }
 
-        // 1. Envia evento de acesso ao carregar a página
         window.addEventListener('DOMContentLoaded', () => sendMetrics({ eventType: "view" }));
 
-        // 2. Monitora os cliques em todos os botões de redes sociais
         document.querySelectorAll('.btn').forEach(button => {
             button.addEventListener('click', () => {
-                const nomeBotao = button.innerText.trim();
+                const nomeBotao = button.querySelector('span').innerText.trim();
                 sendMetrics({ 
                     eventType: "click", 
                     clickedButton: nomeBotao 
@@ -321,3 +416,7 @@
     </script>
 </body>
 </html>
+
+```
+
+O que você achou dessa nova estrutura visual do card com os botões alinhados de ponta a ponta e o fundo cinzento tridimensional?
